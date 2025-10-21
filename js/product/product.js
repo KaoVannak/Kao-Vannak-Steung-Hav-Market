@@ -48,7 +48,7 @@ const products = [
   { name: 'Ground Pork', category: 'meat', price: 24600, oldPrice: null, rating: 4, reviews: 223, badges: [], img: '../img/product/Ground Pork.jpg' },
 
   // Traditional Snacks (12 items) - $1 to $4 (4100 to 16400 Riel)
-  { name: 'Num Ansom', category: 'snacks', price: 12300, oldPrice: null, rating: 4, reviews: 156, badges: [], img: '../img/product/Num Ansom.jpg' },
+  { name: 'num ansom.jpg', category: 'snacks', price: 12300, oldPrice: null, rating: 4, reviews: 156, badges: [], img: '../img/product/num ansom.jpg.jpg' },
   { name: 'Banana Chips', category: 'snacks', price: 8200, oldPrice: 12300, rating: 5, reviews: 189, badges: ['sale', 'best-seller'], img: '../img/product/Banana Chips.jpg' },
   { name: 'Num Krok', category: 'snacks', price: 16400, oldPrice: null, rating: 5, reviews: 234, badges: ['best-seller'], img: '../img/product/Num Krok.jpg' },
   { name: 'Palm Sugar Cake', category: 'snacks', price: 14350, oldPrice: null, rating: 4, reviews: 178, badges: [], img: '../img/product/Palm Sugar Cake.png' },
