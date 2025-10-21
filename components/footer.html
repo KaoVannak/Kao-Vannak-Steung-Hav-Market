@@ -16,11 +16,11 @@
     <div class="footer-col">
       <h3>Product Categories</h3>
       <ul>
-        <li><a href="../pages/product.html">Vegetables & Fruits</a></li>
-        <li><a href="../pages/product.html">Meat & Seafood</a></li>
-        <li><a href="../pages/product.html">Traditional Snacks</a></li>
-        <li><a href="../pages/product.html">Kitchen & Tableware</a></li>
-        <li><a href="../pages/product.html">Personal Care</a></li>
+        <li><a href="pages/product.html" data-page="product.html">Vegetables & Fruits</a></li>
+        <li><a href="pages/product.html" data-page="product.html">Meat & Seafood</a></li>
+        <li><a href="pages/product.html" data-page="product.html">Traditional Snacks</a></li>
+        <li><a href="pages/product.html" data-page="product.html">Kitchen & Tableware</a></li>
+        <li><a href="pages/product.html" data-page="product.html">Personal Care</a></li>
       </ul>
     </div>
 
@@ -28,11 +28,11 @@
     <div class="footer-col">
       <h3>Quick Links</h3>
       <ul>
-        <li><a href="../index.html">Home</a></li>
-        <li><a href="../pages/product.html">Products</a></li>
-        <li><a href="../pages/about-us.html">About Us</a></li>
-        <li><a href="../pages/service.html">Services</a></li>
-        <li><a href="../pages/account.html">My Account</a></li>
+        <li><a href="index.html" data-page="index.html">Home</a></li>
+        <li><a href="pages/product.html" data-page="product.html">Products</a></li>
+        <li><a href="pages/about-us.html" data-page="about-us.html">About Us</a></li>
+        <li><a href="pages/service.html" data-page="service.html">Services</a></li>
+        <li><a href="pages/account.html" data-page="account.html">My Account</a></li>
       </ul>
     </div>
 
@@ -42,7 +42,7 @@
       <ul class="contact-info">
         <li><i class="fa-solid fa-phone"></i> +855 12 345 678</li>
         <li><i class="fa-solid fa-envelope"></i> info@vannakmarket.com</li>
-        <li><i class="fa-solid fa-location-dot"></i> Tomnob rolok, stueng Hav, Sihanoukville, Cambodia</li>
+        <li><a href="pages/service.html" data-page="service.html"><i class="fa-solid fa-location-dot"></i> Tomnob rolok, stueng Hav, Sihanoukville, Cambodia</a></li>
       </ul>
     </div>
   </div>
@@ -54,39 +54,52 @@
 </footer>
 
 <script>
-  // ========== FIX FOOTER NAVIGATION PATHS FOR GITHUB PAGES ==========
+  // ========== SMART FOOTER NAVIGATION FOR GITHUB PAGES ==========
   (function() {
-    function fixFooterPaths() {
+    function setupFooterNavigation() {
       const currentPath = window.location.pathname;
       
-      // Check if we're on the root index.html or in a subdirectory
-      const isRootPage = currentPath.endsWith('/') || 
-                        currentPath.endsWith('/index.html') || 
-                        !currentPath.includes('/pages/');
+      // Determine if we're on root or in pages subdirectory
+      const isInPagesDir = currentPath.includes('/pages/');
       
-      if (isRootPage) {
-        console.log('📍 Root page - fixing footer paths');
+      console.log('📍 Current path:', currentPath);
+      console.log('📍 In pages directory:', isInPagesDir);
+      
+      // Get all footer links with data-page attribute
+      const footerLinks = document.querySelectorAll('.footer a[data-page]');
+      
+      footerLinks.forEach(link => {
+        const pageName = link.getAttribute('data-page');
         
-        // Get all links in footer
-        const footerLinks = document.querySelectorAll('.footer a[href]');
-        
-        footerLinks.forEach(link => {
-          const href = link.getAttribute('href');
-          
-          // Skip social media links and anchor links
-          if (href && href.startsWith('../') && !href.startsWith('#')) {
-            // Remove ../ for root page
-            const newHref = href.replace('../', '');
-            link.setAttribute('href', newHref);
-            console.log(`✓ Fixed footer link: ${href} → ${newHref}`);
+        // Build the correct path based on current location
+        let correctPath;
+        if (isInPagesDir) {
+          // We're in pages/ directory
+          if (pageName === 'index.html') {
+            correctPath = '../index.html';
+          } else {
+            correctPath = pageName; // Same directory
           }
-        });
-      } else {
-        console.log('📍 Subpage - footer paths are correct');
-      }
+        } else {
+          // We're in root directory
+          if (pageName === 'index.html') {
+            correctPath = 'index.html';
+          } else {
+            correctPath = 'pages/' + pageName;
+          }
+        }
+        
+        // Set the correct href
+        link.setAttribute('href', correctPath);
+        console.log(`✓ Set link for ${pageName} to: ${correctPath}`);
+      });
     }
     
-    // Run immediately when script loads
-    fixFooterPaths();
+    // Run when DOM is ready
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', setupFooterNavigation);
+    } else {
+      setupFooterNavigation();
+    }
   })();
 </script>
