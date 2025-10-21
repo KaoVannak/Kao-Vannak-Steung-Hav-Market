@@ -1,0 +1,176 @@
+<header class="header">
+  <div class="logo">
+    <a href="../index.html"
+      ><img src="../img/Logo/Logo_Name-removebg-preview.png" alt="Logo"
+    /></a>
+    <span class="brand">Steung Hav Market</span>
+  </div>
+
+  <nav class="menu" aria-label="Primary">
+    <ul>
+      <li><a href="../index.html" data-page="home">Home</a></li>
+      <li><a href="../pages/product.html" data-page="product">Products</a></li>
+      <li><a href="../pages/about-us.html" data-page="about">About</a></li>
+      <li><a href="../pages/service.html" data-page="service">Service</a></li>
+    </ul>
+  </nav>
+
+  <div class="search-product" role="search">
+    <input
+      type="text"
+      placeholder="Search products..."
+      id="headerSearchInput"
+    />
+    <button class="search-btn" type="button" title="Search">
+      <i class="fa-solid fa-magnifying-glass"></i>
+    </button>
+  </div>
+
+  <div class="icon">
+    <div class="cart-icon" id="cartIconBtn">
+      <i class="fa-solid fa-cart-shopping" title="Cart"></i>
+      <span class="cart-count" id="cartCount" style="display: none">0</span>
+    </div>
+    <a
+      href="../pages/account.html"
+      class="account-icon"
+      id="accountIconBtn"
+      title="Account"
+    >
+      <i class="fa-regular fa-user"></i>
+    </a>
+    <button
+      class="burger-btn"
+      id="burgerBtn"
+      aria-expanded="false"
+      aria-controls="mobile-menu"
+      title="Menu"
+    >
+      <i class="fa-solid fa-bars"></i>
+      <i class="fa-solid fa-times"></i>
+    </button>
+  </div>
+</header>
+
+<!-- Mobile Menu -->
+<div class="mobile-menu" id="mobile-menu" aria-hidden="true">
+  <!-- Mobile Search -->
+  <div class="mobile-search">
+    <input
+      type="text"
+      placeholder="Search products..."
+      id="mobileSearchInput"
+    />
+    <button class="search-btn" type="button" title="Search">
+      <i class="fa-solid fa-magnifying-glass"></i>
+    </button>
+  </div>
+
+  <!-- Navigation Links -->
+  <ul>
+    <li><a href="../index.html" data-page="home">Home</a></li>
+    <li><a href="../pages/product.html" data-page="product">Products</a></li>
+    <li><a href="../pages/about-us.html" data-page="about">About</a></li>
+    <li><a href="../pages/service.html" data-page="service">Service</a></li>
+    <li><a href="../pages/account.html" data-page="account">My Account</a></li>
+  </ul>
+</div>
+
+<script>
+  // Header Search Functionality - Both Desktop & Mobile
+  (function () {
+    function initHeaderSearch() {
+      // Desktop search
+      const desktopSearchInput = document.getElementById("headerSearchInput");
+      const desktopSearchBtn = document.querySelector(
+        ".search-product .search-btn"
+      );
+
+      // Mobile search
+      const mobileSearchInput = document.getElementById("mobileSearchInput");
+      const mobileSearchBtn = document.querySelector(
+        ".mobile-search .search-btn"
+      );
+
+      function performSearch(searchTerm) {
+        if (!searchTerm) {
+          return;
+        }
+
+        const currentPath = window.location.pathname;
+        const isOnProductPage = currentPath.includes("product.html");
+
+        if (isOnProductPage) {
+          const productSearchInput = document.getElementById("productSearch");
+          if (productSearchInput) {
+            productSearchInput.value = searchTerm;
+            const event = new Event("input", { bubbles: true });
+            productSearchInput.dispatchEvent(event);
+
+            const productsSection = document.querySelector(".products-section");
+            if (productsSection) {
+              productsSection.scrollIntoView({
+                behavior: "smooth",
+                block: "start",
+              });
+            }
+
+            // Close mobile menu if open
+            const mobileMenu = document.getElementById("mobile-menu");
+            const burgerBtn = document.getElementById("burgerBtn");
+            if (mobileMenu && mobileMenu.classList.contains("open")) {
+              mobileMenu.classList.remove("open");
+              if (burgerBtn) {
+                burgerBtn.classList.remove("open");
+                burgerBtn.setAttribute("aria-expanded", "false");
+              }
+              mobileMenu.setAttribute("aria-hidden", "true");
+            }
+          }
+        } else {
+          const encodedSearch = encodeURIComponent(searchTerm);
+          window.location.href = `../pages/product.html?search=${encodedSearch}`;
+        }
+      }
+
+      // Desktop search handlers
+      if (desktopSearchInput) {
+        desktopSearchInput.addEventListener("keypress", function (e) {
+          if (e.key === "Enter") {
+            e.preventDefault();
+            performSearch(this.value.trim());
+          }
+        });
+
+        if (desktopSearchBtn) {
+          desktopSearchBtn.addEventListener("click", function () {
+            performSearch(desktopSearchInput.value.trim());
+          });
+        }
+      }
+
+      // Mobile search handlers
+      if (mobileSearchInput) {
+        mobileSearchInput.addEventListener("keypress", function (e) {
+          if (e.key === "Enter") {
+            e.preventDefault();
+            performSearch(this.value.trim());
+          }
+        });
+
+        if (mobileSearchBtn) {
+          mobileSearchBtn.addEventListener("click", function () {
+            performSearch(mobileSearchInput.value.trim());
+          });
+        }
+      }
+    }
+
+    // Initialize when DOM is ready
+    if (document.readyState === "loading") {
+      document.addEventListener("DOMContentLoaded", initHeaderSearch);
+    } else {
+      initHeaderSearch();
+    }
+  })();
+</script>

@@ -1,0 +1,218 @@
+/* ================= CART ICON STYLES ================= */
+
+.cart-icon {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.cart-icon:hover {
+  transform: scale(1.1);
+}
+
+.cart-icon i {
+  font-size: 1.3rem;
+  color: #2c3e50;
+  transition: color 0.3s ease;
+}
+
+.cart-icon:hover i {
+  color: #009846;
+}
+
+/* Cart Count Badge */
+.cart-count {
+  position: absolute;
+  top: -8px;
+  right: -10px;
+  background: linear-gradient(135deg, #e74c3c, #c0392b);
+  color: white;
+  font-size: 0.7rem;
+  font-weight: 700;
+  padding: 2px 6px;
+  border-radius: 50%;
+  min-width: 20px;
+  height: 20px;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 8px rgba(231, 76, 60, 0.4);
+  animation: cartBadgePulse 0.5s ease;
+  font-family: 'Poppins', sans-serif;
+  z-index: 10;
+}
+
+@keyframes cartBadgePulse {
+  0% {
+    transform: scale(0);
+    opacity: 0;
+  }
+  50% {
+    transform: scale(1.2);
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+/* Cart Notification */
+.cart-notification {
+  position: fixed;
+  top: 100px;
+  right: -400px;
+  background: linear-gradient(135deg, #009846, #2ecc71);
+  color: white;
+  padding: 18px 28px;
+  border-radius: 50px;
+  box-shadow: 0 10px 40px rgba(0, 152, 70, 0.3);
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-weight: 600;
+  transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  font-family: 'Poppins', sans-serif;
+  backdrop-filter: blur(10px);
+}
+
+.cart-notification.show {
+  right: 30px;
+}
+
+.cart-notification i {
+  font-size: 1.3rem;
+  animation: checkMark 0.5s ease;
+}
+
+@keyframes checkMark {
+  0% {
+    transform: scale(0) rotate(-45deg);
+  }
+  50% {
+    transform: scale(1.2) rotate(0deg);
+  }
+  100% {
+    transform: scale(1) rotate(0deg);
+  }
+}
+
+.cart-notification span {
+  font-size: 0.95rem;
+}
+
+/* Added to Cart Animation for Cards */
+.added-to-cart {
+  animation: addedPulse 0.5s ease;
+}
+
+@keyframes addedPulse {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(0.95);
+  }
+}
+
+/* ================= RESPONSIVE STYLES ================= */
+
+@media (max-width: 768px) {
+  .cart-count {
+    top: -6px;
+    right: -8px;
+    font-size: 0.65rem;
+    min-width: 18px;
+    height: 18px;
+    padding: 2px 5px;
+  }
+  
+  .cart-notification {
+    padding: 15px 22px;
+    border-radius: 40px;
+    right: -350px;
+  }
+  
+  .cart-notification.show {
+    right: 15px;
+  }
+  
+  .cart-notification i {
+    font-size: 1.1rem;
+  }
+  
+  .cart-notification span {
+    font-size: 0.85rem;
+  }
+}
+
+@media (max-width: 576px) {
+  .cart-count {
+    top: -5px;
+    right: -7px;
+    font-size: 0.6rem;
+    min-width: 16px;
+    height: 16px;
+    padding: 1px 4px;
+  }
+  
+  .cart-notification {
+    padding: 12px 18px;
+    border-radius: 35px;
+    max-width: 280px;
+  }
+  
+  .cart-notification.show {
+    right: 10px;
+  }
+  
+  .cart-notification i {
+    font-size: 1rem;
+  }
+  
+  .cart-notification span {
+    font-size: 0.8rem;
+  }
+}
+
+/* ================= HEADER ICON RESPONSIVE FIX ================= */
+
+.icon {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.icon i {
+  font-size: 1.3rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.icon i:hover {
+  color: #009846;
+  transform: scale(1.1);
+}
+
+@media (max-width: 768px) {
+  .icon {
+    gap: 15px;
+  }
+  
+  .icon i {
+    font-size: 1.2rem;
+  }
+}
+
+@media (max-width: 576px) {
+  .icon {
+    gap: 12px;
+  }
+  
+  .icon i {
+    font-size: 1.1rem;
+  }
+}

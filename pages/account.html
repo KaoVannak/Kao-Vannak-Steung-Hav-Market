@@ -1,0 +1,611 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Steung Hav Market - My Account</title>
+  <link rel="stylesheet" href="../css/cart.css">
+  <link rel="stylesheet" href="../css/style.css" />
+  <link rel="stylesheet" href="../css/header.css">
+  <link rel="stylesheet" href="../css/footer.css">
+  <link rel="stylesheet" href="../css/account.css">
+  <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+  <script src="https://kit.fontawesome.com/eddf6a2689.js" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Battambang:wght@400;700&family=Poppins:wght@400;600;700&family=Roboto:wght@400;500;700&display=swap"
+    rel="stylesheet">
+
+</head>
+
+<body>
+  <div class="container-all">
+    <div id="header-placeholder"></div>
+
+    <div class="account-page">
+      <div class="account-container">
+
+        <!-- Auth Section (Login/Signup) -->
+        <div class="auth-section" id="authSection">
+          <div class="auth-box">
+            <div class="auth-visual">
+              <div class="auth-visual-content">
+                <i class="fa-solid fa-shopping-bag"></i>
+                <h2>Welcome Back!</h2>
+                <p>Access your account to track orders, manage your wishlist, and enjoy exclusive deals on authentic
+                  Cambodian products.</p>
+              </div>
+            </div>
+
+            <div class="auth-form-container">
+              <div class="auth-form-header">
+                <h1>My Account</h1>
+                <p>Login or create a new account</p>
+              </div>
+
+              <div class="auth-tabs">
+                <div class="auth-tab active" data-tab="login">Login</div>
+                <div class="auth-tab" data-tab="signup">Sign Up</div>
+              </div>
+
+              <div class="auth-forms">
+                <!-- Login Form -->
+                <form class="auth-form active" id="loginForm" data-form="login">
+                  <div class="form-group">
+                    <label>Email Address</label>
+                    <div class="input-wrapper">
+                      <i class="fa-solid fa-envelope"></i>
+                      <input type="email" id="loginEmail" placeholder="your.email@example.com" required>
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <label>Password</label>
+                    <div class="input-wrapper">
+                      <i class="fa-solid fa-lock"></i>
+                      <input type="password" id="loginPassword" placeholder="Enter your password" required>
+                    </div>
+                  </div>
+
+                  <div class="form-options">
+                    <label class="remember-me">
+                      <input type="checkbox" id="rememberMe">
+                      <span>Remember me</span>
+                    </label>
+                    <a href="#" class="forgot-password" id="forgotPasswordLink">Forgot Password?</a>
+                  </div>
+
+                  <button type="submit" class="submit-btn">
+                    <i class="fa-solid fa-arrow-right"></i> Login
+                  </button>
+
+                  <div class="social-login">
+                    <p>Or continue with</p>
+                    <div class="social-buttons">
+                      <button type="button" class="social-btn google" id="googleLoginBtn">
+                        <i class="fa-brands fa-google"></i>
+                        Google
+                      </button>
+                      <button type="button" class="social-btn facebook" id="facebookLoginBtn">
+                        <i class="fa-brands fa-facebook"></i>
+                        Facebook
+                      </button>
+                    </div>
+                  </div>
+                </form>
+
+                <!-- Signup Form -->
+                <form class="auth-form" id="signupForm" data-form="signup">
+                  <div class="form-group">
+                    <label>Full Name</label>
+                    <div class="input-wrapper">
+                      <i class="fa-solid fa-user"></i>
+                      <input type="text" id="signupName" placeholder="Enter your full name" required>
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <label>Email Address</label>
+                    <div class="input-wrapper">
+                      <i class="fa-solid fa-envelope"></i>
+                      <input type="email" id="signupEmail" placeholder="your.email@example.com" required>
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <label>Phone Number</label>
+                    <div class="input-wrapper">
+                      <i class="fa-solid fa-phone"></i>
+                      <input type="tel" id="signupPhone" placeholder="+855 12 345 678" required>
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <label>Password</label>
+                    <div class="input-wrapper">
+                      <i class="fa-solid fa-lock"></i>
+                      <input type="password" id="signupPassword" placeholder="Create a password" required>
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <label>Confirm Password</label>
+                    <div class="input-wrapper">
+                      <i class="fa-solid fa-lock"></i>
+                      <input type="password" id="signupConfirmPassword" placeholder="Confirm your password" required>
+                    </div>
+                  </div>
+
+                  <button type="submit" class="submit-btn">
+                    <i class="fa-solid fa-user-plus"></i> Create Account
+                  </button>
+
+                  <div class="social-login">
+                    <p>Or sign up with</p>
+                    <div class="social-buttons">
+                      <button type="button" class="social-btn google" id="googleSignupBtn">
+                        <i class="fa-brands fa-google"></i>
+                        Google
+                      </button>
+                      <button type="button" class="social-btn facebook" id="facebookSignupBtn">
+                        <i class="fa-brands fa-facebook"></i>
+                        Facebook
+                      </button>
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Dashboard Section -->
+        <div class="dashboard-section" id="dashboardSection">
+          <div class="dashboard-header">
+            <div class="user-info">
+              <div class="user-avatar" id="userAvatar">JD</div>
+              <div class="user-details">
+                <h2 id="userName">John Doe</h2>
+                <p id="userEmail">john.doe@example.com</p>
+              </div>
+            </div>
+            <button class="logout-btn" id="logoutBtn">
+              <i class="fa-solid fa-sign-out-alt"></i> Logout
+            </button>
+          </div>
+
+          <div class="dashboard-grid">
+            <div class="dashboard-card">
+              <div class="card-icon orders">
+                <i class="fa-solid fa-box"></i>
+              </div>
+              <h3>My Orders</h3>
+              <p>Track your orders</p>
+              <div class="card-value">3</div>
+            </div>
+
+            <div class="dashboard-card">
+              <div class="card-icon wishlist">
+                <i class="fa-solid fa-heart"></i>
+              </div>
+              <h3>Wishlist</h3>
+              <p>Saved items</p>
+              <div class="card-value">12</div>
+            </div>
+
+            <div class="dashboard-card">
+              <div class="card-icon address">
+                <i class="fa-solid fa-location-dot"></i>
+              </div>
+              <h3>Addresses</h3>
+              <p>Manage delivery addresses</p>
+              <div class="card-value">2</div>
+            </div>
+
+            <div class="dashboard-card">
+              <div class="card-icon settings">
+                <i class="fa-solid fa-gear"></i>
+              </div>
+              <h3>Settings</h3>
+              <p>Account preferences</p>
+            </div>
+          </div>
+
+          <div class="recent-orders">
+            <h2 class="section-title">
+              <i class="fa-solid fa-clock-rotate-left"></i>
+              Recent Orders
+            </h2>
+
+            <div class="order-item">
+              <div class="order-header">
+                <span class="order-id">#ORD2025001</span>
+                <span class="order-status delivered">Delivered</span>
+              </div>
+              <div class="order-details">
+                <span>3 items • 98,750៛</span>
+                <span>October 10, 2025</span>
+              </div>
+            </div>
+
+            <div class="order-item">
+              <div class="order-header">
+                <span class="order-id">#ORD2025002</span>
+                <span class="order-status processing">Processing</span>
+              </div>
+              <div class="order-details">
+                <span>2 items • 45,320៛</span>
+                <span>October 12, 2025</span>
+              </div>
+            </div>
+
+            <div class="order-item">
+              <div class="order-header">
+                <span class="order-id">#ORD2025003</span>
+                <span class="order-status pending">Pending</span>
+              </div>
+              <div class="order-details">
+                <span>1 item • 21,525៛</span>
+                <span>October 13, 2025</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <footer id="footer-placeholder"></footer>
+  </div>
+
+  <!-- Cart Sidebar -->
+  <div class="cart-sidebar" id="cartSidebar">
+    <div class="cart-sidebar-header">
+      <h2>Shopping Cart</h2>
+      <button class="cart-close-btn" id="cartCloseBtn">
+        <i class="fa-solid fa-times"></i>
+      </button>
+    </div>
+
+    <div class="cart-items-container" id="cartItemsContainer">
+      <div class="empty-cart-message">
+        <i class="fa-solid fa-shopping-cart"></i>
+        <p>Your cart is empty</p>
+      </div>
+    </div>
+
+    <div class="cart-sidebar-footer">
+      <div class="cart-summary">
+        <div class="summary-row">
+          <span>Subtotal:</span>
+          <span id="subtotalPrice">0៛</span>
+        </div>
+        <div class="summary-row">
+          <span>Shipping:</span>
+          <span id="shippingPrice">Free</span>
+        </div>
+        <div class="summary-row total">
+          <span>Total:</span>
+          <span id="totalPrice">0៛</span>
+        </div>
+      </div>
+
+      <button class="btn-checkout" id="checkoutBtn">
+        <i class="fa-solid fa-credit-card"></i> Proceed to Checkout
+      </button>
+      <button class="btn-continue-shopping" id="continueShoppingBtn">
+        Continue Shopping
+      </button>
+    </div>
+  </div>
+
+  <div class="cart-overlay" id="cartOverlay"></div>
+  <!-- Scripts -->
+  <script src="../js/cart.js"></script>
+  <script src="../js/menu.js"></script>
+  <script src="../js/active-page.js"></script>
+
+  
+  <script>
+    // Tab switching
+    document.querySelectorAll('.auth-tab').forEach(tab => {
+      tab.addEventListener('click', function () {
+        const tabName = this.dataset.tab;
+
+        document.querySelectorAll('.auth-tab').forEach(t => t.classList.remove('active'));
+        document.querySelectorAll('.auth-form').forEach(f => f.classList.remove('active'));
+
+        this.classList.add('active');
+        document.querySelector(`[data-form="${tabName}"]`).classList.add('active');
+      });
+    });
+
+    // Login form submission
+    document.getElementById('loginForm').addEventListener('submit', function (e) {
+      e.preventDefault();
+
+      const email = document.getElementById('loginEmail').value;
+      const password = document.getElementById('loginPassword').value;
+
+      if (email && password) {
+        // Show success alert with SweetAlert2
+        Swal.fire({
+          title: 'Login Successful!',
+          html: `Welcome back!<br><strong>${email}</strong>`,
+          icon: 'success',
+          confirmButtonText: 'Continue',
+          timer: 2000,
+          timerProgressBar: true,
+          showClass: {
+            popup: 'animate__animated animate__fadeInDown'
+          },
+          hideClass: {
+            popup: 'animate__animated animate__fadeOutUp'
+          }
+        }).then(() => {
+          // This would normally call backend API
+          console.log('Login attempt:', { email, password });
+
+          // For frontend demo, just show the alert
+          Swal.fire({
+            icon: 'info',
+            title: 'Frontend Demo',
+            text: 'This is a frontend demonstration. In production, this would authenticate with your backend API.',
+            confirmButtonText: 'Got it!'
+          });
+        });
+      }
+    });
+
+    // Signup form submission
+    document.getElementById('signupForm').addEventListener('submit', function (e) {
+      e.preventDefault();
+
+      const name = document.getElementById('signupName').value;
+      const email = document.getElementById('signupEmail').value;
+      const phone = document.getElementById('signupPhone').value;
+      const password = document.getElementById('signupPassword').value;
+      const confirmPassword = document.getElementById('signupConfirmPassword').value;
+
+      // Validate passwords match
+      if (password !== confirmPassword) {
+        Swal.fire({
+          icon: 'error',
+          title: 'Passwords Don\'t Match',
+          text: 'Please make sure both passwords are identical.',
+          confirmButtonText: 'Try Again'
+        });
+        return;
+      }
+
+      // Validate password strength
+      if (password.length < 6) {
+        Swal.fire({
+          icon: 'warning',
+          title: 'Weak Password',
+          text: 'Password must be at least 6 characters long.',
+          confirmButtonText: 'OK'
+        });
+        return;
+      }
+
+      if (name && email && phone && password) {
+        // Show success alert
+        Swal.fire({
+          title: 'Account Created!',
+          html: `
+            <div style="text-align: left; padding: 10px;">
+              <p><strong>Name:</strong> ${name}</p>
+              <p><strong>Email:</strong> ${email}</p>
+              <p><strong>Phone:</strong> ${phone}</p>
+            </div>
+          `,
+          icon: 'success',
+          confirmButtonText: 'Get Started',
+          showClass: {
+            popup: 'animate__animated animate__zoomIn'
+          }
+        }).then(() => {
+          // This would normally call backend API
+          console.log('Signup attempt:', { name, email, phone, password });
+
+          // Show frontend demo message
+          Swal.fire({
+            icon: 'info',
+            title: 'Frontend Demo',
+            text: 'This is a frontend demonstration. In production, this would create an account through your backend API.',
+            confirmButtonText: 'Got it!'
+          });
+        });
+      }
+    });
+
+    // Forgot Password Link
+    document.getElementById('forgotPasswordLink').addEventListener('click', function (e) {
+      e.preventDefault();
+
+      Swal.fire({
+        title: 'Reset Password',
+        html: `
+          <input type="email" id="resetEmail" class="swal2-input" placeholder="Enter your email address">
+        `,
+        icon: 'question',
+        showCancelButton: true,
+        confirmButtonText: 'Send Reset Link',
+        cancelButtonText: 'Cancel',
+        preConfirm: () => {
+          const email = document.getElementById('resetEmail').value;
+          if (!email) {
+            Swal.showValidationMessage('Please enter your email address');
+          }
+          return email;
+        }
+      }).then((result) => {
+        if (result.isConfirmed) {
+          Swal.fire({
+            icon: 'success',
+            title: 'Email Sent!',
+            html: `Password reset link has been sent to:<br><strong>${result.value}</strong>`,
+            text: 'Please check your inbox and spam folder.',
+            confirmButtonText: 'OK'
+          });
+        }
+      });
+    });
+
+    // Google Login
+    document.getElementById('googleLoginBtn').addEventListener('click', function (e) {
+      e.preventDefault();
+
+      Swal.fire({
+        title: 'Google Login',
+        text: 'Redirecting to Google authentication...',
+        icon: 'info',
+        showConfirmButton: false,
+        timer: 1500,
+        timerProgressBar: true
+      }).then(() => {
+        Swal.fire({
+          icon: 'info',
+          title: 'Frontend Demo',
+          text: 'Google OAuth would be integrated here with your backend API.',
+          confirmButtonText: 'OK'
+        });
+      });
+    });
+
+    // Facebook Login
+    document.getElementById('facebookLoginBtn').addEventListener('click', function (e) {
+      e.preventDefault();
+
+      Swal.fire({
+        title: 'Facebook Login',
+        text: 'Redirecting to Facebook authentication...',
+        icon: 'info',
+        showConfirmButton: false,
+        timer: 1500,
+        timerProgressBar: true
+      }).then(() => {
+        Swal.fire({
+          icon: 'info',
+          title: 'Frontend Demo',
+          text: 'Facebook OAuth would be integrated here with your backend API.',
+          confirmButtonText: 'OK'
+        });
+      });
+    });
+
+    // Google Signup
+    document.getElementById('googleSignupBtn').addEventListener('click', function (e) {
+      e.preventDefault();
+
+      Swal.fire({
+        title: 'Sign Up with Google',
+        text: 'Redirecting to Google authentication...',
+        icon: 'info',
+        showConfirmButton: false,
+        timer: 1500,
+        timerProgressBar: true
+      }).then(() => {
+        Swal.fire({
+          icon: 'info',
+          title: 'Frontend Demo',
+          text: 'Google OAuth would be integrated here with your backend API.',
+          confirmButtonText: 'OK'
+        });
+      });
+    });
+
+    // Facebook Signup
+    document.getElementById('facebookSignupBtn').addEventListener('click', function (e) {
+      e.preventDefault();
+
+      Swal.fire({
+        title: 'Sign Up with Facebook',
+        text: 'Redirecting to Facebook authentication...',
+        icon: 'info',
+        showConfirmButton: false,
+        timer: 1500,
+        timerProgressBar: true
+      }).then(() => {
+        Swal.fire({
+          icon: 'info',
+          title: 'Frontend Demo',
+          text: 'Facebook OAuth would be integrated here with your backend API.',
+          confirmButtonText: 'OK'
+        });
+      });
+    });
+
+    // Logout with confirmation
+    document.getElementById('logoutBtn').addEventListener('click', function () {
+      Swal.fire({
+        title: 'Are you sure?',
+        text: 'Do you want to logout from your account?',
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonText: 'Yes, Logout',
+        cancelButtonText: 'Cancel',
+        confirmButtonColor: '#e74c3c',
+        cancelButtonColor: '#95a5a6'
+      }).then((result) => {
+        if (result.isConfirmed) {
+          Swal.fire({
+            icon: 'success',
+            title: 'Logged Out!',
+            text: 'You have been successfully logged out.',
+            timer: 1500,
+            showConfirmButton: false
+          }).then(() => {
+            document.getElementById('dashboardSection').classList.remove('active');
+            document.getElementById('authSection').style.display = 'flex';
+
+            document.getElementById('loginForm').reset();
+            document.getElementById('signupForm').reset();
+          });
+        }
+      });
+    });
+
+    // Dashboard cards click handlers
+    document.querySelectorAll('.dashboard-card').forEach(card => {
+      card.addEventListener('click', function () {
+        const cardTitle = this.querySelector('h3').textContent;
+
+        Swal.fire({
+          icon: 'info',
+          title: cardTitle,
+          text: `${cardTitle} functionality would be implemented here with full features.`,
+          confirmButtonText: 'OK'
+        });
+      });
+    });
+  </script>
+
+  <!-- Load Header -->
+  <script>
+    $(function () {
+      $("#header-placeholder").load("../components/header.html", function () {
+        console.log('✓ Header loaded');
+
+        setTimeout(() => {
+          if (typeof initializeCart === "function") initializeCart();
+          if (typeof updateCartCount === "function") updateCartCount();
+          if (typeof initMenu === "function") initMenu();
+          document.dispatchEvent(new Event('headerLoaded'));
+        }, 100);
+      });
+    });
+  </script>
+
+  <!-- Load Footer -->
+  <script>
+    $(function () {
+      $("#footer-placeholder").load("../components/footer.html");
+    });
+  </script>
+</body>
+
+</html>
