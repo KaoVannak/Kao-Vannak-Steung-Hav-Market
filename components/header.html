@@ -1,8 +1,8 @@
 <header class="header">
   <div class="logo">
-    <a href="../index.html"
-      ><img src="../img/Logo/Logo_Name-removebg-preview.png" alt="Logo"
-    /></a>
+    <a href="../index.html">
+      <img src="../img/Logo/Logo_Name-removebg-preview.png" alt="Logo" />
+    </a>
     <span class="brand">Steung Hav Market</span>
   </div>
 
@@ -16,11 +16,7 @@
   </nav>
 
   <div class="search-product" role="search">
-    <input
-      type="text"
-      placeholder="Search products..."
-      id="headerSearchInput"
-    />
+    <input type="text" placeholder="Search products..." id="headerSearchInput" />
     <button class="search-btn" type="button" title="Search">
       <i class="fa-solid fa-magnifying-glass"></i>
     </button>
@@ -31,21 +27,10 @@
       <i class="fa-solid fa-cart-shopping" title="Cart"></i>
       <span class="cart-count" id="cartCount" style="display: none">0</span>
     </div>
-    <a
-      href="../pages/account.html"
-      class="account-icon"
-      id="accountIconBtn"
-      title="Account"
-    >
+    <a href="../pages/account.html" class="account-icon" id="accountIconBtn" title="Account">
       <i class="fa-regular fa-user"></i>
     </a>
-    <button
-      class="burger-btn"
-      id="burgerBtn"
-      aria-expanded="false"
-      aria-controls="mobile-menu"
-      title="Menu"
-    >
+    <button class="burger-btn" id="burgerBtn" aria-expanded="false" aria-controls="mobile-menu" title="Menu">
       <i class="fa-solid fa-bars"></i>
       <i class="fa-solid fa-times"></i>
     </button>
@@ -56,11 +41,7 @@
 <div class="mobile-menu" id="mobile-menu" aria-hidden="true">
   <!-- Mobile Search -->
   <div class="mobile-search">
-    <input
-      type="text"
-      placeholder="Search products..."
-      id="mobileSearchInput"
-    />
+    <input type="text" placeholder="Search products..." id="mobileSearchInput" />
     <button class="search-btn" type="button" title="Search">
       <i class="fa-solid fa-magnifying-glass"></i>
     </button>
@@ -77,20 +58,59 @@
 </div>
 
 <script>
-  // Header Search Functionality - Both Desktop & Mobile
+  // ========== FIX NAVIGATION PATHS FOR GITHUB PAGES ==========
+  (function() {
+    function fixNavigationPaths() {
+      const currentPath = window.location.pathname;
+      
+      // Check if we're on the root index.html or in a subdirectory
+      const isRootPage = currentPath.endsWith('/') || 
+                        currentPath.endsWith('/index.html') || 
+                        !currentPath.includes('/pages/');
+      
+      if (isRootPage) {
+        console.log('📍 Root page detected - fixing navigation paths');
+        
+        // Get all links in header and mobile menu
+        const allLinks = document.querySelectorAll('.header a[href], .mobile-menu a[href]');
+        
+        allLinks.forEach(link => {
+          const href = link.getAttribute('href');
+          
+          if (href && href.startsWith('../')) {
+            // Remove ../ for root page
+            const newHref = href.replace('../', '');
+            link.setAttribute('href', newHref);
+            console.log(`✓ Fixed: ${href} → ${newHref}`);
+          }
+        });
+        
+        // Fix logo image
+        const logoImg = document.querySelector('.logo img');
+        if (logoImg) {
+          const imgSrc = logoImg.getAttribute('src');
+          if (imgSrc && imgSrc.startsWith('../')) {
+            const newSrc = imgSrc.replace('../', '');
+            logoImg.setAttribute('src', newSrc);
+            console.log(`✓ Fixed logo: ${imgSrc} → ${newSrc}`);
+          }
+        }
+      } else {
+        console.log('📍 Subpage detected - paths are correct');
+      }
+    }
+    
+    // Run immediately when script loads
+    fixNavigationPaths();
+  })();
+
+  // ========== HEADER SEARCH FUNCTIONALITY ==========
   (function () {
     function initHeaderSearch() {
-      // Desktop search
       const desktopSearchInput = document.getElementById("headerSearchInput");
-      const desktopSearchBtn = document.querySelector(
-        ".search-product .search-btn"
-      );
-
-      // Mobile search
+      const desktopSearchBtn = document.querySelector(".search-product .search-btn");
       const mobileSearchInput = document.getElementById("mobileSearchInput");
-      const mobileSearchBtn = document.querySelector(
-        ".mobile-search .search-btn"
-      );
+      const mobileSearchBtn = document.querySelector(".mobile-search .search-btn");
 
       function performSearch(searchTerm) {
         if (!searchTerm) {
@@ -128,8 +148,18 @@
             }
           }
         } else {
+          // Determine correct path based on current location
+          const currentPath = window.location.pathname;
+          const isRootPage = currentPath.endsWith('/') || 
+                            currentPath.endsWith('/index.html') ||
+                            !currentPath.includes('/pages/');
+          
           const encodedSearch = encodeURIComponent(searchTerm);
-          window.location.href = `../pages/product.html?search=${encodedSearch}`;
+          const targetPath = isRootPage 
+            ? `pages/product.html?search=${encodedSearch}`
+            : `../pages/product.html?search=${encodedSearch}`;
+          
+          window.location.href = targetPath;
         }
       }
 
