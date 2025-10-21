@@ -709,30 +709,40 @@ function initCartSidebar() {
     };
 
     // Checkout button
-    // Checkout button
-    if (checkoutBtn) {
-      checkoutBtn.addEventListener("click", function () {
-        const items = window.cart || [];
-        if (items.length === 0) {
-          alert("Your cart is empty!");
-          return;
-        }
-
-        // ✅ FIX: Smart path detection
-        const currentPath = window.location.pathname;
-        const isRootPage =
-          currentPath.endsWith("/") ||
-          currentPath.endsWith("/index.html") ||
-          !currentPath.includes("/pages/");
-
-        const checkoutPath = isRootPage
-          ? "pages/checkout.html"
-          : "checkout.html";
-
-        console.log("Redirecting to checkout:", checkoutPath);
-        window.location.href = checkoutPath;
-      });
+   // Checkout button
+if (checkoutBtn) {
+  checkoutBtn.addEventListener('click', function() {
+    const items = window.cart || [];
+    if (items.length === 0) {
+      alert('Your cart is empty!');
+      return;
     }
+    
+    // ✅ FIX: Detect GitHub Pages base path
+    const currentPath = window.location.pathname;
+    
+    // Extract base path (e.g., /Kao-Vannak-Steung-Hav-Market/)
+    const pathParts = currentPath.split('/').filter(p => p);
+    const isGitHubPages = window.location.hostname.includes('github.io');
+    
+    let checkoutPath;
+    
+    if (isGitHubPages && pathParts.length >= 1) {
+      // On GitHub Pages with repo name in path
+      const repoName = pathParts[0];
+      checkoutPath = `/${repoName}/pages/checkout.html`;
+    } else if (currentPath.includes('/pages/')) {
+      // Local or already in pages folder
+      checkoutPath = 'checkout.html';
+    } else {
+      // Local root page
+      checkoutPath = 'pages/checkout.html';
+    }
+    
+    console.log('Redirecting to checkout:', checkoutPath);
+    window.location.href = checkoutPath;
+  });
+}
 
     // Update display when cart is modified
     document.addEventListener("cartUpdated", updateCartDisplay);
