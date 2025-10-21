@@ -6,7 +6,7 @@ const products = [
   // Vegetables & Fruits (25 items) - $1 to $4 (4100 to 16400 Riel)
   { name: 'Bok Choy', category: 'vegetables', price: 4100, oldPrice: 8200, rating: 4, reviews: 124, badges: ['sale', 'best-seller'], img: '../img/product/Bok Choy.jpg' },
   { name: 'Lettuce', category: 'vegetables', price: 4100, oldPrice: 8200, rating: 4, reviews: 124, badges: ['sale', 'best-seller'], img: '../img/product/Lettuce.jpg' },
-  { name: 'Cabbage', category: 'vegetables', price: 4100, oldPrice: 8200, rating: 4, reviews: 124, badges: ['sale', 'best-seller'], img: '../img/product/Cabbage.png' },
+  { name: 'Cabbage', category: 'vegetables', price: 4100, oldPrice: 8200, rating: 4, reviews: 124, badges: ['sale', 'best-seller'], img: '../img/product/cabbage.png' },
   { name: 'Nappa Cabbage', category: 'vegetables', price: 4100, oldPrice: 8200, rating: 4, reviews: 124, badges: ['sale', 'best-seller'], img: '../img/product/Nappa Cabbage.jpg' },
   { name: 'Fresh Tomatoes', category: 'vegetables', price: 8200, oldPrice: null, rating: 5, reviews: 98, badges: ['new'], img: '../img/product/Fresh Tomatoes.jpg' },
   { name: 'Cucumbers', category: 'vegetables', price: 6150, oldPrice: null, rating: 4, reviews: 76, badges: [], img: '../img/product/Cucumbers.jpg' },
