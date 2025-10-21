@@ -16,11 +16,11 @@
     <div class="footer-col">
       <h3>Product Categories</h3>
       <ul>
-        <li><a href="pages/product.html" data-page="product.html">Vegetables & Fruits</a></li>
-        <li><a href="pages/product.html" data-page="product.html">Meat & Seafood</a></li>
-        <li><a href="pages/product.html" data-page="product.html">Traditional Snacks</a></li>
-        <li><a href="pages/product.html" data-page="product.html">Kitchen & Tableware</a></li>
-        <li><a href="pages/product.html" data-page="product.html">Personal Care</a></li>
+        <li><a href="#" data-page="product">Vegetables & Fruits</a></li>
+        <li><a href="#" data-page="product">Meat & Seafood</a></li>
+        <li><a href="#" data-page="product">Traditional Snacks</a></li>
+        <li><a href="#" data-page="product">Kitchen & Tableware</a></li>
+        <li><a href="#" data-page="product">Personal Care</a></li>
       </ul>
     </div>
 
@@ -28,11 +28,11 @@
     <div class="footer-col">
       <h3>Quick Links</h3>
       <ul>
-        <li><a href="index.html" data-page="index.html">Home</a></li>
-        <li><a href="pages/product.html" data-page="product.html">Products</a></li>
-        <li><a href="pages/about-us.html" data-page="about-us.html">About Us</a></li>
-        <li><a href="pages/service.html" data-page="service.html">Services</a></li>
-        <li><a href="pages/account.html" data-page="account.html">My Account</a></li>
+        <li><a href="#" data-page="home">Home</a></li>
+        <li><a href="#" data-page="product">Products</a></li>
+        <li><a href="#" data-page="about-us">About Us</a></li>
+        <li><a href="#" data-page="service">Services</a></li>
+        <li><a href="#" data-page="account">My Account</a></li>
       </ul>
     </div>
 
@@ -42,7 +42,7 @@
       <ul class="contact-info">
         <li><i class="fa-solid fa-phone"></i> +855 12 345 678</li>
         <li><i class="fa-solid fa-envelope"></i> info@vannakmarket.com</li>
-        <li><a href="pages/service.html" data-page="service.html"><i class="fa-solid fa-location-dot"></i> Tomnob rolok, stueng Hav, Sihanoukville, Cambodia</a></li>
+        <li><i class="fa-solid fa-location-dot"></i> Tomnob rolok, stueng Hav, Sihanoukville, Cambodia</li>
       </ul>
     </div>
   </div>
@@ -54,44 +54,50 @@
 </footer>
 
 <script>
-  // ========== SMART FOOTER NAVIGATION FOR GITHUB PAGES ==========
+  // ========== FIXED FOOTER NAVIGATION FOR GITHUB PAGES ==========
   (function() {
     function setupFooterNavigation() {
-      const currentPath = window.location.pathname;
+      const fullPath = window.location.pathname;
       
-      // Determine if we're on root or in pages subdirectory
-      const isInPagesDir = currentPath.includes('/pages/');
+      // Extract the path after the repository name
+      // Example: /kao-Vannak-Steung-Hav-Market/pages/product.html
+      const pathParts = fullPath.split('/').filter(Boolean);
       
-      console.log('📍 Current path:', currentPath);
+      // Find where 'pages' appears (if at all)
+      const pagesIndex = pathParts.indexOf('pages');
+      const isInPagesDir = pagesIndex !== -1;
+      
+      // Get base path (everything before pages/ or the file)
+      let basePath = '/';
+      if (pathParts.length > 0) {
+        // Check if first part is the repo name
+        if (pathParts[0] !== 'pages' && pathParts[0] !== 'index.html') {
+          basePath = '/' + pathParts[0] + '/';
+        }
+      }
+      
+      console.log('📍 Full path:', fullPath);
+      console.log('📍 Base path:', basePath);
       console.log('📍 In pages directory:', isInPagesDir);
       
       // Get all footer links with data-page attribute
       const footerLinks = document.querySelectorAll('.footer a[data-page]');
       
       footerLinks.forEach(link => {
-        const pageName = link.getAttribute('data-page');
-        
-        // Build the correct path based on current location
+        const page = link.getAttribute('data-page');
         let correctPath;
-        if (isInPagesDir) {
-          // We're in pages/ directory
-          if (pageName === 'index.html') {
-            correctPath = '../index.html';
-          } else {
-            correctPath = pageName; // Same directory
-          }
+        
+        if (page === 'home') {
+          // Always go to root index.html
+          correctPath = basePath + 'index.html';
         } else {
-          // We're in root directory
-          if (pageName === 'index.html') {
-            correctPath = 'index.html';
-          } else {
-            correctPath = 'pages/' + pageName;
-          }
+          // Go to pages/[page].html
+          correctPath = basePath + 'pages/' + page + '.html';
         }
         
         // Set the correct href
         link.setAttribute('href', correctPath);
-        console.log(`✓ Set link for ${pageName} to: ${correctPath}`);
+        console.log(`✓ ${page} → ${correctPath}`);
       });
     }
     
